@@ -1,3 +1,5 @@
+![Project Homepage Screenshot](/public/HomePage.png)
+
 # Certificate Generator 
 
 This project is a certificate generator built using ReactJS and Material UI.  It allows you to create personalized certificates with a single click.

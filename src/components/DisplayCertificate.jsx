@@ -1,8 +1,32 @@
 import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Button, Container, Typography } from '@mui/material';
+import { Card, Button, Container, Typography, Stack } from '@mui/material';
+import { styled } from '@mui/system';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+
+const CardContainer = styled(Stack)(({ theme }) => ({
+  height: 'calc((1 - var(--template-frame-height, 0)) * 80vh)',
+  minHeight: '100%',
+  padding: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(4),
+  },
+  '&::before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    zIndex: -1,
+    inset: 0,
+    backgroundImage:
+      'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+    backgroundRepeat: 'no-repeat',
+    ...theme.applyStyles('dark', {
+      backgroundImage:
+        'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+    }),
+  },
+}));
 
 function CertificateDisplay({ certificateData }) {
   const navigate = useNavigate();
@@ -76,9 +100,10 @@ function CertificateDisplay({ certificateData }) {
   };
 
   return (
-    <Container >
+    <CardContainer>
     <Container style={{ marginTop: '20px', width: '100%' , display: 'flex', justifyContent: 'center', }}>
-      <Card ref={certificateRef} style={{ position: 'relative', textAlign: 'center', width: '58%', padding: 0, }}>
+      <Card ref={certificateRef} style={{ position: 'relative', textAlign: 'center', width: '56%', padding: 0, boxShadow:
+    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',}}>
         {/* Certificate Background Image */}
         <img
           src="/Tublian.png"
@@ -163,7 +188,7 @@ function CertificateDisplay({ certificateData }) {
         Edit
       </Button>
       </Container>
-    </Container>
+    </CardContainer>
   );
 }
 
